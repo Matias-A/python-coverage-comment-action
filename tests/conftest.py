@@ -213,6 +213,49 @@ def coverage_obj_no_branch():
         },
     )
 
+@pytest.fixture
+def coverage_obj_include_raw():
+    return coverage_module.Coverage(
+        meta=coverage_module.CoverageMetadata(
+            version="1.2.3",
+            timestamp=datetime.datetime(2000, 1, 1),
+            branch_coverage=True,
+            show_contexts=False,
+        ),
+        info=coverage_module.CoverageInfo(
+            covered_lines=5,
+            num_statements=6,
+            percent_covered=0.75,
+            missing_lines=1,
+            excluded_lines=0,
+            num_branches=2,
+            num_partial_branches=1,
+            covered_branches=1,
+            missing_branches=1,
+        ),
+        files={
+            "codebase/code.py": coverage_module.FileCoverage(
+                path="codebase/code.py",
+                executed_lines=[1, 2, 5, 6, 9],
+                missing_lines=[7, 9],
+                excluded_lines=[],
+                info=coverage_module.CoverageInfo(
+                    covered_lines=5,
+                    num_statements=6,
+                    percent_covered=0.75,
+                    missing_lines=1,
+                    excluded_lines=0,
+                    num_branches=2,
+                    num_partial_branches=1,
+                    covered_branches=1,
+                    missing_branches=1,
+                ),
+            )
+        },
+        extra_data="" # TODO
+
+    )
+
 
 @pytest.fixture
 def diff_coverage_obj():

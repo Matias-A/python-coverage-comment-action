@@ -73,6 +73,7 @@ def config():
         "MINIMUM_ORANGE": 50.8,
         "MERGE_COVERAGE_FILES": True,
         "VERBOSE": False,
+        "INCLUDE_RAW_OUTPUT": False,
     }
 
     def _(**kwargs):

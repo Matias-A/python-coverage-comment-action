@@ -20,7 +20,7 @@ def test_get_coverage_info(mocker, coverage_json, coverage_obj):
     assert result == coverage_obj
 
 
-def test_get_coverage_info__include_raw(mocker, coverage_json, coverage_obj):
+def test_get_coverage_info__include_raw(mocker, coverage_json, coverage_obj_include_raw):
     run = mocker.patch(
         "coverage_comment.subprocess.run", return_value=json.dumps(coverage_json)
     )
@@ -32,7 +32,7 @@ def test_get_coverage_info__include_raw(mocker, coverage_json, coverage_obj):
         mocker.call("coverage", "json", "-o", "-"),
         mocker.call("coverage", "report"),
     ]
-    # TODO: test correctness too
+    assert result == coverage_obj_include_raw # TODO: fails now
 
 
 def test_get_coverage_info__no_merge(mocker, coverage_json):
