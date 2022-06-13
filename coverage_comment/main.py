@@ -79,19 +79,19 @@ def action(
         else:
             # event_name == "push"
             if config.SAVE_SVG_BADGE:
-                return save_badge_svg(
+                # Note: there's a lot of unnecessary repetition of code now
+                save_badge_svg(
                     config=config,
                     coverage=coverage,
                     github_session=github_session,
                     git=git,
                 )
-            else:
-                return save_badge(
-                    config=config,
-                    coverage=coverage,
-                    github_session=github_session,
-                    git=git,
-                )
+            return save_badge(
+                config=config,
+                coverage=coverage,
+                github_session=github_session,
+                git=git,
+            )
 
     else:
         # event_name == "workflow_run"
